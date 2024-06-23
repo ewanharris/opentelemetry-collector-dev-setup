@@ -44,3 +44,16 @@ services:
       - ./prometheus.yaml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - 3001:3000 # UI
+    restart: unless-stopped
+    depends_on:
+      prometheus:
+        condition: service_started
+    volumes:
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/provisioning/dashboards/dashboards.yaml:/etc/grafana/provisioning/dashboards/main.yaml
+      - ./grafana/dashboards:/etc/grafana/dashboards

@@ -13,10 +13,12 @@ That will expose the following backends:
 - Jaeger at http://0.0.0.0:16686
 - Zipkin at http://0.0.0.0:9411
 - Prometheus at http://0.0.0.0:9090
+- Grafana at http://0.0.0.0:3001
 
 Notes:
 
 - It may take some time for the application metrics to appear on the Prometheus
-  dashboard;
+  dashboard
+- Grafana is pre-configured with a dashboard that uses the metrics from the OpenFGA telemetry and a connection to the prometheus container. To access it, access the Grafana URL and login using the default credentials (admin:admin)
 
 To clean up any docker container from the demo run `docker-compose down`.
